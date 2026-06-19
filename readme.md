@@ -1,1 +1,0 @@
-# vectorshift-technical-assessment
