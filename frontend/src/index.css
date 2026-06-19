@@ -1,0 +1,255 @@
+/* src/index.css */
+
+/* === Global Variables === */
+:root {
+  --vs-bg: #0f172a;
+  --vs-canvas-bg: #1e293b;
+  --vs-node-bg: #1e293b;
+  --vs-node-border: #334155;
+  --vs-node-header-bg: rgba(59, 130, 246, 0.1);
+  --vs-accent: #3b82f6;
+  --vs-accent-hover: #2563eb;
+  --vs-text: #f1f5f9;
+  --vs-text-muted: #94a3b8;
+  --vs-input-bg: #0f172a;
+  --vs-handle-color: #3b82f6;
+  --vs-toolbar-bg: #1e293b;
+}
+
+/* === Base Styles === */
+body {
+  margin: 0;
+  background: var(--vs-bg);
+  color: var(--vs-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+/* === Node Container === */
+.vs-node {
+  background: var(--vs-node-bg);
+  border: 1px solid var(--vs-node-border);
+  border-radius: 12px;
+  min-width: 220px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+  overflow: visible;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.vs-node:hover {
+  border-color: var(--vs-accent);
+  box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.2);
+}
+
+/* === Node Header === */
+.vs-node-header {
+  padding: 10px 14px;
+  background: var(--vs-node-header-bg);
+  border-bottom: 1px solid var(--vs-node-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--vs-text);
+  border-radius: 12px 12px 0 0;
+}
+
+.vs-node-icon {
+  font-size: 16px;
+}
+
+.vs-node-label {
+  letter-spacing: 0.3px;
+}
+
+/* === Node Content === */
+.vs-node-content {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vs-node-desc {
+  margin: 0;
+  font-size: 12px;
+  color: var(--vs-text-muted);
+  line-height: 1.4;
+}
+
+/* === Form Elements === */
+.vs-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vs-field-group label {
+  font-size: 11px;
+  color: var(--vs-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+
+.vs-input,
+.vs-select,
+.vs-textarea {
+  background: var(--vs-input-bg);
+  border: 1px solid var(--vs-node-border);
+  color: var(--vs-text);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.vs-input:focus,
+.vs-select:focus,
+.vs-textarea:focus {
+  outline: none;
+  border-color: var(--vs-accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.vs-textarea {
+  resize: vertical;
+  min-height: 40px;
+  line-height: 1.5;
+}
+
+.vs-code-editor {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  tab-size: 2;
+}
+
+.vs-range {
+  width: 100%;
+  accent-color: var(--vs-accent);
+}
+
+/* === Handles === */
+.vs-handle {
+  width: 12px !important;
+  height: 12px !important;
+  background: var(--vs-handle-color) !important;
+  border: 2px solid var(--vs-node-bg) !important;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.vs-handle:hover {
+  transform: scale(1.4);
+  background: var(--vs-accent-hover) !important;
+}
+
+.vs-handle-target { left: -6px !important; }
+.vs-handle-source { right: -6px !important; }
+
+/* === Toolbar === */
+.toolbar-container {
+  background: var(--vs-toolbar-bg);
+  border-bottom: 1px solid var(--vs-node-border);
+  padding: 12px 16px;
+}
+
+.draggable-node-btn {
+  cursor: grab;
+  min-width: 80px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--vs-input-bg);
+  border: 1px solid var(--vs-node-border);
+  color: var(--vs-text);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.draggable-node-btn:hover {
+  background: var(--vs-accent);
+  border-color: var(--vs-accent);
+  transform: translateY(-1px);
+}
+
+.draggable-node-btn:active {
+  cursor: grabbing;
+  transform: translateY(0);
+}
+
+/* === Submit Button === */
+.submit-btn {
+  background: var(--vs-accent);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.submit-btn:hover {
+  background: var(--vs-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* === ReactFlow Overrides === */
+.react-flow__background {
+  background-color: var(--vs-canvas-bg) !important;
+}
+
+.react-flow__controls {
+  background: var(--vs-node-bg) !important;
+  border: 1px solid var(--vs-node-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+.react-flow__controls button {
+  background: transparent !important;
+  border-bottom: 1px solid var(--vs-node-border) !important;
+  color: var(--vs-text) !important;
+}
+
+.react-flow__controls button:hover {
+  background: var(--vs-node-header-bg) !important;
+}
+
+.react-flow__minimap {
+  background: var(--vs-node-bg) !important;
+  border: 1px solid var(--vs-node-border) !important;
+  border-radius: 8px !important;
+}
+
+.react-flow__edge-path {
+  stroke: var(--vs-accent) !important;
+  stroke-width: 2px !important;
+}
+
+/* Add this to index.css */
+.vs-input, .vs-select, .vs-textarea {
+  color: #f1f5f9 !important; /* Force white text */
+  background: #0f172a !important; /* Force dark background */
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
